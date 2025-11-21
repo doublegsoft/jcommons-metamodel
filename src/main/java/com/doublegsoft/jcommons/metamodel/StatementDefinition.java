@@ -27,6 +27,8 @@ public class StatementDefinition {
 
   protected ValueDefinition remote;
 
+  protected InvocationDefinition invocation;
+
   protected final List<StatementDefinition> statements = new ArrayList<>();
 
   protected String originalText;
@@ -57,6 +59,14 @@ public class StatementDefinition {
       if (operator.charAt(i) == '|') count++;
     }
     return count - 1;
+  }
+
+  public InvocationDefinition getInvocation() {
+    return invocation;
+  }
+
+  public void setInvocation(InvocationDefinition invocation) {
+    this.invocation = invocation;
   }
 
   public ValueDefinition getRemote() {
