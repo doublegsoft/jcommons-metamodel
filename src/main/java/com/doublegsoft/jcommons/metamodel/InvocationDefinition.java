@@ -7,7 +7,7 @@ public class InvocationDefinition {
 
   private String method;
 
-  private final List<String> parameters = new ArrayList<>();
+  private final List<String> arguments = new ArrayList<>();
 
   public String getMethod() {
     return method;
@@ -17,7 +17,7 @@ public class InvocationDefinition {
     this.method = method;
   }
 
-  public List<String> getParameters() {
-    return parameters;
+  public List<String> getArguments() {
+    return arguments;
   }
 }
