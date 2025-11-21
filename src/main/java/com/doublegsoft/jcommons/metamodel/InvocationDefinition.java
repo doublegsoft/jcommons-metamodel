@@ -7,6 +7,8 @@ public class InvocationDefinition {
 
   private String method;
 
+  private String error;
+
   private final List<String> arguments = new ArrayList<>();
 
   public String getMethod() {
@@ -19,5 +21,13 @@ public class InvocationDefinition {
 
   public List<String> getArguments() {
     return arguments;
+  }
+
+  public String getError() {
+    return error;
+  }
+
+  public void setError(String error) {
+    this.error = error;
   }
 }
