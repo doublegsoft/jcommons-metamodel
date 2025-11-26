@@ -49,6 +49,8 @@ public class ValueDefinition {
 
   private final Map<String,String> options = new HashMap<>();
 
+  private InvocationDefinition invocation;
+
   public String getKeyword() {
     return keyword;
   }
@@ -133,4 +135,11 @@ public class ValueDefinition {
     this.originalText = originalText;
   }
 
+  public InvocationDefinition getInvocation() {
+    return invocation;
+  }
+
+  public void setInvocation(InvocationDefinition invocation) {
+    this.invocation = invocation;
+  }
 }
