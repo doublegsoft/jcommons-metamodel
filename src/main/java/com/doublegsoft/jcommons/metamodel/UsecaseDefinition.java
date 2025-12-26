@@ -65,7 +65,7 @@ public class UsecaseDefinition {
     return name;
   }
 
-  public void addOption(String name, Object value) {
+  public void setOption(String name, Object value) {
     options.put(name, value);
   }
 
