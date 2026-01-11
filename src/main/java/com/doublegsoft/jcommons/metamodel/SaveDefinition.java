@@ -28,6 +28,8 @@ public class SaveDefinition extends StatementDefinition {
 
   private ObjectDefinition saveObject;
 
+  private boolean array;
+
   public String getVariable() {
     return variable;
   }
@@ -52,4 +54,11 @@ public class SaveDefinition extends StatementDefinition {
     this.saveObject = saveObject;
   }
 
+  public boolean isArray() {
+    return array;
+  }
+
+  public void setArray(boolean array) {
+    this.array = array;
+  }
 }
