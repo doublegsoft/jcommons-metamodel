@@ -43,6 +43,8 @@ public class ValueDefinition {
 
   private ObjectDefinition filterValue;
 
+  private CalcExprDefinition calcExpr;
+
   private String originalText;
 
   private String label;
@@ -141,5 +143,13 @@ public class ValueDefinition {
 
   public void setInvocation(InvocationDefinition invocation) {
     this.invocation = invocation;
+  }
+
+  public CalcExprDefinition getCalcExpr() {
+    return calcExpr;
+  }
+
+  public void setCalcExpr(CalcExprDefinition calcExpr) {
+    this.calcExpr = calcExpr;
   }
 }
