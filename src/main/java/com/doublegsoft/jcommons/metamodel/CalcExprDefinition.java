@@ -2,25 +2,27 @@ package com.doublegsoft.jcommons.metamodel;
 
 public class CalcExprDefinition {
 
-  private ValueDefinition leftOperand;
+  private CalcExprDefinition leftOperand;
 
-  private ValueDefinition rightOperand;
+  private CalcExprDefinition rightOperand;
 
   private String operator;
 
-  public ValueDefinition getLeftOperand() {
+  private ValueDefinition value;
+
+  public CalcExprDefinition getLeftOperand() {
     return leftOperand;
   }
 
-  public void setLeftOperand(ValueDefinition leftOperand) {
+  public void setLeftOperand(CalcExprDefinition leftOperand) {
     this.leftOperand = leftOperand;
   }
 
-  public ValueDefinition getRightOperand() {
+  public CalcExprDefinition getRightOperand() {
     return rightOperand;
   }
 
-  public void setRightOperand(ValueDefinition rightOperand) {
+  public void setRightOperand(CalcExprDefinition rightOperand) {
     this.rightOperand = rightOperand;
   }
 
@@ -30,5 +32,13 @@ public class CalcExprDefinition {
 
   public void setOperator(String operator) {
     this.operator = operator;
+  }
+
+  public ValueDefinition getValue() {
+    return value;
+  }
+
+  public void setValue(ValueDefinition value) {
+    this.value = value;
   }
 }
