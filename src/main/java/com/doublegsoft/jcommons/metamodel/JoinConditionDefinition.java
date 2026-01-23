@@ -71,12 +71,28 @@ public class JoinConditionDefinition {
   public boolean equals(Object o) {
     if (o == null || getClass() != o.getClass()) return false;
     JoinConditionDefinition that = (JoinConditionDefinition) o;
-    return Objects.equals(leftObject, that.leftObject) && Objects.equals(leftAttribute, that.leftAttribute) && Objects.equals(rightObject, that.rightObject) && Objects.equals(rightAttribute, that.rightAttribute) && Objects.equals(operator, that.operator) && Objects.equals(value, that.value);
+    if ("=".equals(operator) && value == null) {
+      return (Objects.equals(leftObject, that.leftObject) &&
+          Objects.equals(leftAttribute, that.leftAttribute) &&
+          Objects.equals(rightObject, that.rightObject) &&
+          Objects.equals(rightAttribute, that.rightAttribute)) ||
+          (Objects.equals(leftObject, that.rightObject) &&
+              Objects.equals(leftAttribute, that.rightAttribute) &&
+              Objects.equals(rightObject, that.leftObject) &&
+              Objects.equals(rightAttribute, that.leftAttribute));
+    }
+    return Objects.equals(leftObject, that.leftObject) &&
+        Objects.equals(leftAttribute, that.leftAttribute) &&
+        Objects.equals(rightObject, that.rightObject) &&
+        Objects.equals(rightAttribute, that.rightAttribute) &&
+        Objects.equals(operator, that.operator) &&
+        Objects.equals(value, that.value);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(leftObject, leftAttribute, rightObject, rightAttribute, operator, value);
+    return Objects.hash(leftObject, leftAttribute, rightObject, rightAttribute, operator, value) *
+        Objects.hash(rightObject, rightAttribute, leftObject, leftAttribute, operator, value);
   }
 
   @Override
