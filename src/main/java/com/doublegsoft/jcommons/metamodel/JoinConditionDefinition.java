@@ -78,4 +78,17 @@ public class JoinConditionDefinition {
   public int hashCode() {
     return Objects.hash(leftObject, leftAttribute, rightObject, rightAttribute, operator, value);
   }
+
+  @Override
+  public String toString() {
+    StringBuilder retVal = new StringBuilder();
+    retVal.append(leftObject.getName()).append(".").append(leftAttribute.getName());
+    retVal.append(" ").append(getOperator()).append(" ");
+    if (value != null) {
+      retVal.append("'").append(value).append("'");
+    } else {
+      retVal.append(rightObject.getName()).append(".").append(rightAttribute.getName());
+    }
+    return retVal.toString();
+  }
 }
