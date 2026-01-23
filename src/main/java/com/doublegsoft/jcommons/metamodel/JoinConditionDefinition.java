@@ -3,6 +3,8 @@ package com.doublegsoft.jcommons.metamodel;
 import com.doublegsoft.jcommons.metabean.AttributeDefinition;
 import com.doublegsoft.jcommons.metabean.ObjectDefinition;
 
+import java.util.Objects;
+
 public class JoinConditionDefinition {
 
   private ObjectDefinition leftObject;
@@ -63,5 +65,17 @@ public class JoinConditionDefinition {
 
   public void setValue(Object value) {
     this.value = value;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (o == null || getClass() != o.getClass()) return false;
+    JoinConditionDefinition that = (JoinConditionDefinition) o;
+    return Objects.equals(leftObject, that.leftObject) && Objects.equals(leftAttribute, that.leftAttribute) && Objects.equals(rightObject, that.rightObject) && Objects.equals(rightAttribute, that.rightAttribute) && Objects.equals(operator, that.operator) && Objects.equals(value, that.value);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(leftObject, leftAttribute, rightObject, rightAttribute, operator, value);
   }
 }
