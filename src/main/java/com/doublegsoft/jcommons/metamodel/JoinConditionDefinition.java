@@ -113,8 +113,8 @@ public class JoinConditionDefinition {
 
   @Override
   public int hashCode() {
-    return Objects.hash(leftObject, leftAttribute, rightObject, rightAttribute, operator, value) *
-        Objects.hash(rightObject, rightAttribute, leftObject, leftAttribute, operator, value);
+    return Objects.hash(leftObjectAlias, leftObject, leftAttribute, rightObject, rightAttribute, operator, value) *
+        Objects.hash(rightObjectAlias, rightObject, rightAttribute, leftObject, leftAttribute, operator, value);
   }
 
   @Override
