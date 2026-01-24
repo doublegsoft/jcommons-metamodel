@@ -120,12 +120,20 @@ public class JoinConditionDefinition {
   @Override
   public String toString() {
     StringBuilder retVal = new StringBuilder();
-    retVal.append(leftObject.getName()).append(".").append(leftAttribute.getName());
+    retVal.append(leftObject.getName());
+    if (leftObjectAlias != null) {
+      retVal.append("(").append(leftObjectAlias).append(")");
+    }
+    retVal.append(".").append(leftAttribute.getName());
     retVal.append(" ").append(getOperator()).append(" ");
     if (value != null) {
       retVal.append("'").append(value).append("'");
     } else {
-      retVal.append(rightObject.getName()).append(".").append(rightAttribute.getName());
+      retVal.append(rightObject.getName());
+      if (rightObjectAlias != null) {
+        retVal.append("(").append(rightObjectAlias).append(")");
+      }
+      retVal.append(".").append(rightAttribute.getName());
     }
     return retVal.toString();
   }
