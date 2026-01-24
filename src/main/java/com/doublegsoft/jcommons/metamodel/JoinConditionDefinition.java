@@ -7,6 +7,10 @@ import java.util.Objects;
 
 public class JoinConditionDefinition {
 
+  private String leftObjectAlias;
+
+  private String rightObjectAlias;
+
   private ObjectDefinition leftObject;
 
   private AttributeDefinition leftAttribute;
@@ -67,17 +71,29 @@ public class JoinConditionDefinition {
     this.value = value;
   }
 
+  public String getLeftObjectAlias() {
+    return leftObjectAlias;
+  }
+
+  public void setLeftObjectAlias(String leftObjectAlias) {
+    this.leftObjectAlias = leftObjectAlias;
+  }
+
+  public String getRightObjectAlias() {
+    return rightObjectAlias;
+  }
+
+  public void setRightObjectAlias(String rightObjectAlias) {
+    this.rightObjectAlias = rightObjectAlias;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (o == null || getClass() != o.getClass()) return false;
     JoinConditionDefinition that = (JoinConditionDefinition) o;
     if ("=".equals(operator) && value == null) {
-      String thisLeftAlias = this.leftAttribute.getLabelledOption("alias", "object");
-      String thatLeftAlias = that.leftAttribute.getLabelledOption("alias", "object");
-      String thisRightAlias = this.rightAttribute.getLabelledOption("alias", "object");
-      String thatRightAlias = that.rightAttribute.getLabelledOption("alias", "object");
-      return (Objects.equals(thisLeftAlias, thatLeftAlias) &&
-              Objects.equals(thisRightAlias, thatRightAlias) &&
+      return (Objects.equals(this.leftObjectAlias, that.leftObjectAlias) &&
+              Objects.equals(this.rightObjectAlias, that.rightObjectAlias) &&
               Objects.equals(leftObject, that.leftObject) &&
               Objects.equals(leftAttribute, that.leftAttribute) &&
               Objects.equals(rightObject, that.rightObject) &&
