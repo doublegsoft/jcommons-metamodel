@@ -72,11 +72,17 @@ public class JoinConditionDefinition {
     if (o == null || getClass() != o.getClass()) return false;
     JoinConditionDefinition that = (JoinConditionDefinition) o;
     if ("=".equals(operator) && value == null) {
-      return (Objects.equals(leftObject, that.leftObject) &&
-          Objects.equals(leftAttribute, that.leftAttribute) &&
-          Objects.equals(rightObject, that.rightObject) &&
-          Objects.equals(rightAttribute, that.rightAttribute)) ||
-          (Objects.equals(leftObject, that.rightObject) &&
+      String thisLeftAlias = this.leftAttribute.getLabelledOption("alias", "object");
+      String thatLeftAlias = that.leftAttribute.getLabelledOption("alias", "object");
+      String thisRightAlias = this.rightAttribute.getLabelledOption("alias", "object");
+      String thatRightAlias = that.rightAttribute.getLabelledOption("alias", "object");
+      return (Objects.equals(thisLeftAlias, thatLeftAlias) &&
+              Objects.equals(thisRightAlias, thatRightAlias) &&
+              Objects.equals(leftObject, that.leftObject) &&
+              Objects.equals(leftAttribute, that.leftAttribute) &&
+              Objects.equals(rightObject, that.rightObject) &&
+              Objects.equals(rightAttribute, that.rightAttribute)) ||
+              (Objects.equals(leftObject, that.rightObject) &&
               Objects.equals(leftAttribute, that.rightAttribute) &&
               Objects.equals(rightObject, that.leftObject) &&
               Objects.equals(rightAttribute, that.leftAttribute));
