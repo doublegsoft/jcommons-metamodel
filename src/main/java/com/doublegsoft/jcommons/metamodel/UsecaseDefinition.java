@@ -19,6 +19,9 @@
 package com.doublegsoft.jcommons.metamodel;
 
 import com.doublegsoft.jcommons.metabean.ModelDefinition;
+import com.doublegsoft.jcommons.metabean.ObjectDefinition;
+import com.doublegsoft.jcommons.metabean.type.CollectionType;
+import com.doublegsoft.jcommons.metabean.type.ObjectType;
 
 import java.util.*;
 
@@ -46,6 +49,8 @@ public class UsecaseDefinition {
   private ReturnedObjectDefinition returnedObject;
 
   private final List<StatementDefinition> statements = new ArrayList<>();
+
+  private final Map<String, VariableDefinition> variables = new HashMap<>();
 
   private final ModelDefinition contextModel = new ModelDefinition();
 
@@ -115,6 +120,22 @@ public class UsecaseDefinition {
 
   public List<StatementDefinition> getStatements() {
     return statements;
+  }
+
+  public void addVariable(String name, ObjectDefinition obj, boolean array) {
+    if (variables.containsKey(name)) {
+      return;
+    }
+    VariableDefinition var = new VariableDefinition();
+    var.setName(name);
+    if (array) {
+      CollectionType collType = new CollectionType(obj.getName());
+      collType.setComponentType(obj);
+      var.setType(collType);
+    } else {
+      var.setType(obj);
+    }
+    variables.put(name, var);
   }
 
   @Override
