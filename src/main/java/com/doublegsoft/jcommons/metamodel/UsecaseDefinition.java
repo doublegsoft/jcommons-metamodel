@@ -122,7 +122,7 @@ public class UsecaseDefinition {
     return statements;
   }
 
-  public void addVariable(String name, ObjectDefinition obj, boolean array) {
+  public void registerVariable(String name, ObjectDefinition obj, boolean array) {
     if (variables.containsKey(name)) {
       return;
     }
