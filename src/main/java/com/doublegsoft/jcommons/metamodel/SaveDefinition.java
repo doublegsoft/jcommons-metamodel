@@ -22,7 +22,9 @@ import com.doublegsoft.jcommons.metabean.ObjectDefinition;
 
 public class SaveDefinition extends StatementDefinition {
 
-  private VariableDefinition variable;
+  private String variable;
+
+  private VariableDefinition variableObject;
 
   private String typeName;
 
@@ -30,12 +32,20 @@ public class SaveDefinition extends StatementDefinition {
 
   private boolean array;
 
-  public VariableDefinition getVariable() {
+  public String getVariable() {
     return variable;
   }
 
-  public void setVariable(VariableDefinition variable) {
+  public void setVariable(String variable) {
     this.variable = variable;
+  }
+
+  public VariableDefinition getVariableObject() {
+    return variableObject;
+  }
+
+  public void setVariableObject(VariableDefinition variableObject) {
+    this.variableObject = variableObject;
   }
 
   public String getTypeName() {
