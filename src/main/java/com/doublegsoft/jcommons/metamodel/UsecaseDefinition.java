@@ -142,6 +142,10 @@ public class UsecaseDefinition {
     variables.put(name, var);
   }
 
+  public VariableDefinition getVariable(String name) {
+    return variables.get(name);
+  }
+
   @Override
   public int hashCode() {
     int hash = 7;
