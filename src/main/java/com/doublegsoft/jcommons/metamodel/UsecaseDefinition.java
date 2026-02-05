@@ -122,6 +122,10 @@ public class UsecaseDefinition {
     return statements;
   }
 
+  public void registerVariable(String name, ObjectDefinition obj) {
+    registerVariable(name, obj, false);
+  }
+
   public void registerVariable(String name, ObjectDefinition obj, boolean array) {
     if (variables.containsKey(name)) {
       return;
