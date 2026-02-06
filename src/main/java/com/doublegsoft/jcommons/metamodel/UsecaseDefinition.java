@@ -122,22 +122,22 @@ public class UsecaseDefinition {
     return statements;
   }
 
-  public void registerVariable(String name, ObjectDefinition obj) {
-    registerVariable(name, obj, false);
+  public void registerVariable(String name, ObjectType type) {
+    registerVariable(name, type, false);
   }
 
-  public void registerVariable(String name, ObjectDefinition obj, boolean array) {
+  public void registerVariable(String name, ObjectType type, boolean array) {
     if (variables.containsKey(name)) {
       return;
     }
     VariableDefinition var = new VariableDefinition();
     var.setName(name);
     if (array) {
-      CollectionType collType = new CollectionType(obj.getName());
-      collType.setComponentType(obj);
+      CollectionType collType = new CollectionType(type.getName());
+      collType.setComponentType(type);
       var.setType(collType);
     } else {
-      var.setType(obj);
+      var.setType(type);
     }
     variables.put(name, var);
   }
