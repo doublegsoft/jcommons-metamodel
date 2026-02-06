@@ -33,6 +33,8 @@ public class ValueDefinition {
 
   private String string;
 
+  private String bool;
+
   private String variable;
 
   private AttributeDefinition attributeValue;
@@ -75,6 +77,14 @@ public class ValueDefinition {
 
   public void setString(String string) {
     this.string = string;
+  }
+
+  public String getBool() {
+    return bool;
+  }
+
+  public void setBool(String bool) {
+    this.bool = bool;
   }
 
   public AttributeDefinition getAttributeValue() {
