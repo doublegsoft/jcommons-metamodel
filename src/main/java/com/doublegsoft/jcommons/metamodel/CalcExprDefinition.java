@@ -64,20 +64,23 @@ public class CalcExprDefinition {
   }
 
   private void collectObjects(List<ObjectDefinition> holder, CalcExprDefinition calcExpr) {
-    if (value != null) {
-      if (value.getObjectValue() != null) {
-        holder.add(value.getObjectValue());
-      } else if (value.getArrayValue() != null) {
-        holder.add(value.getArrayValue());
-      } else if (value.getCalcExpr() != null) {
-        collectObjects(holder, calcExpr);
+    if (calcExpr == null) {
+      return;
+    }
+    if (calcExpr.value != null) {
+      if (calcExpr.value.getObjectValue() != null) {
+        holder.add(calcExpr.value.getObjectValue());
+      } else if (calcExpr.value.getArrayValue() != null) {
+        holder.add(calcExpr.value.getArrayValue());
+      } else if (calcExpr.value.getCalcExpr() != null) {
+        collectObjects(holder, calcExpr.value.getCalcExpr());
       }
     }
-    if (leftOperand != null) {
-      collectObjects(holder, leftOperand);
+    if (calcExpr.leftOperand != null) {
+      collectObjects(holder, calcExpr.leftOperand);
     }
-    if (rightOperand != null) {
-      collectObjects(holder, rightOperand);
+    if (calcExpr.rightOperand != null) {
+      collectObjects(holder, calcExpr.rightOperand);
     }
   }
 }
