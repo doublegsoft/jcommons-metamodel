@@ -57,23 +57,21 @@ public class CalcExprDefinition {
     this.originalText = originalText;
   }
 
-  public List<ObjectDefinition> getOperands() {
-    List<ObjectDefinition> retVal = new ArrayList<>();
+  public List<ValueDefinition> getOperands() {
+    List<ValueDefinition> retVal = new ArrayList<>();
     collectObjects(retVal, this);
     return retVal;
   }
 
-  private void collectObjects(List<ObjectDefinition> holder, CalcExprDefinition calcExpr) {
+  private void collectObjects(List<ValueDefinition> holder, CalcExprDefinition calcExpr) {
     if (calcExpr == null) {
       return;
     }
     if (calcExpr.value != null) {
-      if (calcExpr.value.getObjectValue() != null) {
-        holder.add(calcExpr.value.getObjectValue());
-      } else if (calcExpr.value.getArrayValue() != null) {
-        holder.add(calcExpr.value.getArrayValue());
-      } else if (calcExpr.value.getCalcExpr() != null) {
+      if (calcExpr.value.getCalcExpr() != null) {
         collectObjects(holder, calcExpr.value.getCalcExpr());
+      } else {
+        holder.add(calcExpr.value);
       }
     }
     if (calcExpr.leftOperand != null) {
