@@ -11,7 +11,7 @@ public class ReturnDefinition extends StatementDefinition {
 
   private final Set<String> variables = new HashSet<>();
 
-  private void addVariable(String var) {
+  public void addVariable(String var) {
     variables.add(var);
   }
 
