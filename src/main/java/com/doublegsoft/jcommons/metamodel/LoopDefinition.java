@@ -18,11 +18,16 @@
  */
 package com.doublegsoft.jcommons.metamodel;
 
+import com.doublegsoft.jcommons.metabean.ObjectDefinition;
+import com.doublegsoft.jcommons.metabean.type.ObjectType;
+
 public class LoopDefinition extends StatementDefinition {
 
   private String itemVar;
 
   private String arrayVar;
+
+  private ObjectDefinition componentType;
 
   public String getItemVar() {
     return itemVar;
@@ -40,4 +45,11 @@ public class LoopDefinition extends StatementDefinition {
     this.arrayVar = arrayVar;
   }
 
+  public ObjectDefinition getComponentType() {
+    return componentType;
+  }
+
+  public void setComponentType(ObjectDefinition componentType) {
+    this.componentType = componentType;
+  }
 }
