@@ -19,7 +19,11 @@
 package com.doublegsoft.jcommons.metamodel;
 
 import com.doublegsoft.jcommons.metabean.ObjectDefinition;
+import com.doublegsoft.jcommons.metabean.type.CollectionType;
 import com.doublegsoft.jcommons.metabean.type.ObjectType;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class LoopDefinition extends StatementDefinition {
 
@@ -28,6 +32,8 @@ public class LoopDefinition extends StatementDefinition {
   private String arrayVar;
 
   private ObjectDefinition componentType;
+
+  private final Map<String, VariableDefinition> variables = new HashMap<>();
 
   public String getItemVar() {
     return itemVar;
@@ -51,5 +57,29 @@ public class LoopDefinition extends StatementDefinition {
 
   public void setComponentType(ObjectDefinition componentType) {
     this.componentType = componentType;
+  }
+
+  public void registerVariable(String name, ObjectType type) {
+    registerVariable(name, type, false);
+  }
+
+  public void registerVariable(String name, ObjectType type, boolean array) {
+    if (variables.containsKey(name)) {
+      return;
+    }
+    VariableDefinition var = new VariableDefinition();
+    var.setName(name);
+    if (array) {
+      CollectionType collType = new CollectionType(type.getName());
+      collType.setComponentType(type);
+      var.setType(collType);
+    } else {
+      var.setType(type);
+    }
+    variables.put(name, var);
+  }
+
+  public VariableDefinition getVariable(String name) {
+    return variables.get(name);
   }
 }
