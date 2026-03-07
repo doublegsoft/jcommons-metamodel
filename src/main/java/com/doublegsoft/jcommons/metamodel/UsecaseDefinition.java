@@ -18,10 +18,12 @@
  */
 package com.doublegsoft.jcommons.metamodel;
 
+import com.doublegsoft.jcommons.metabean.AttributeDefinition;
 import com.doublegsoft.jcommons.metabean.ModelDefinition;
 import com.doublegsoft.jcommons.metabean.ObjectDefinition;
 import com.doublegsoft.jcommons.metabean.type.CollectionType;
 import com.doublegsoft.jcommons.metabean.type.ObjectType;
+import com.doublegsoft.jcommons.utils.Strings;
 
 import java.util.*;
 
@@ -53,6 +55,8 @@ public class UsecaseDefinition {
   private final Map<String, VariableDefinition> variables = new HashMap<>();
 
   private final ModelDefinition contextModel = new ModelDefinition();
+
+  private ModelDefinition dataModel;
 
   public UsecaseDefinition(String name) {
     this.name = name;
@@ -122,6 +126,14 @@ public class UsecaseDefinition {
     return statements;
   }
 
+  public ModelDefinition getDataModel() {
+    return dataModel;
+  }
+
+  public void setDataModel(ModelDefinition dataModel) {
+    this.dataModel = dataModel;
+  }
+
   public void registerVariable(String name, ObjectType type) {
     registerVariable(name, type, false);
   }
@@ -144,6 +156,34 @@ public class UsecaseDefinition {
 
   public VariableDefinition getVariable(String name) {
     return variables.get(name);
+  }
+
+  public Set<ObjectDefinition> getDataObjects() {
+    HashSet<ObjectDefinition> retVal = new HashSet<>();
+    for (AttributeDefinition attr : parameterizedObject.getAttributes()) {
+      String origObjName = attr.getLabelledOption("original", "object");
+      if (Strings.isEmpty(origObjName)) {
+        continue;
+      }
+      ObjectDefinition origObj = dataModel.findObjectByName(origObjName);
+      if (origObj != null) {
+        retVal.add(origObj);
+      }
+    }
+    if (returnedObject != null) {
+      for (AttributeDefinition attr : returnedObject.getAttributes()) {
+        String conjObjName = attr.getLabelledOption("conjunction", "object");
+        if (Strings.isEmpty(conjObjName)) {
+          conjObjName = attr.getLabelledOption("conjunction", "name");
+        }
+        if (!Strings.isEmpty(conjObjName)) {
+          ObjectDefinition conjObj = dataModel.findObjectByName(conjObjName);
+          retVal.add(conjObj);
+        }
+      }
+    }
+    retVal.addAll(getDataObjectsInStatements(statements));
+    return retVal;
   }
 
   @Override
@@ -173,6 +213,33 @@ public class UsecaseDefinition {
       return false;
     }
     return true;
+  }
+
+  private Set<ObjectDefinition> getDataObjectsInStatements(List<StatementDefinition> statements) {
+    Set<ObjectDefinition> retVal = new HashSet<>();
+    for (StatementDefinition stmt : statements) {
+      if (stmt instanceof SaveDefinition) {
+        SaveDefinition save = (SaveDefinition) stmt;
+        retVal.add(save.getSaveObject());
+      } else if (stmt instanceof AssignmentDefinition) {
+        AssignmentDefinition assign = (AssignmentDefinition) stmt;
+        ValueDefinition value = assign.getValue();
+        if (value.getObjectValue() != null) {
+          retVal.add(value.getObjectValue());
+        } else if (value.getArrayValue() != null) {
+          retVal.add(value.getArrayValue());
+        }
+      } else if (stmt.isLoop()) {
+        LoopDefinition loop = (LoopDefinition) stmt;
+        if (loop.getComponentType() != null) {
+          retVal.add(loop.getComponentType());
+        }
+        retVal.addAll(getDataObjectsInStatements(stmt.getStatements()));
+      } else if (stmt.isConditional()) {
+        retVal.addAll(getDataObjectsInStatements(stmt.getStatements()));
+      }
+    }
+    return retVal;
   }
 
 }
