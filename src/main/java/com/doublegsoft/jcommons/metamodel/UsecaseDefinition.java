@@ -221,18 +221,23 @@ public class UsecaseDefinition {
       if (stmt instanceof SaveDefinition) {
         SaveDefinition save = (SaveDefinition) stmt;
         if (save.getSaveObject() != null) {
-          String origObjName = save.getSaveObject().getLabelledOption("original", "object");
-          retVal.add(dataModel.findObjectByName(origObjName));
+          retVal.add(save.getSaveObject());
         }
       } else if (stmt instanceof AssignmentDefinition) {
         AssignmentDefinition assign = (AssignmentDefinition) stmt;
         ValueDefinition value = assign.getValue();
         if (value.getObjectValue() != null) {
           String origObjName = value.getObjectValue().getLabelledOption("original", "object");
-          retVal.add(dataModel.findObjectByName(origObjName));
+          ObjectDefinition origObj = dataModel.findObjectByName(origObjName);
+          if (origObj != null) {
+            retVal.add(origObj);
+          }
         } else if (value.getArrayValue() != null) {
           String origObjName = value.getArrayValue().getLabelledOption("original", "object");
-          retVal.add(dataModel.findObjectByName(origObjName));
+          ObjectDefinition origObj = dataModel.findObjectByName(origObjName);
+          if (origObj != null) {
+            retVal.add(origObj);
+          }
         }
       } else if (stmt.isLoop()) {
         LoopDefinition loop = (LoopDefinition) stmt;
