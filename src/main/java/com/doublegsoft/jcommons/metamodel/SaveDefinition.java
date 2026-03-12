@@ -32,6 +32,8 @@ public class SaveDefinition extends StatementDefinition {
 
   private boolean array;
 
+  private String error;
+
   public String getVariable() {
     return variable;
   }
@@ -70,5 +72,13 @@ public class SaveDefinition extends StatementDefinition {
 
   public void setArray(boolean array) {
     this.array = array;
+  }
+
+  public String getError() {
+    return error;
+  }
+
+  public void setError(String error) {
+    this.error = error;
   }
 }
