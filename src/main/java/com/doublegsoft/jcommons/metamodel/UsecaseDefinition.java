@@ -155,7 +155,20 @@ public class UsecaseDefinition {
   }
 
   public VariableDefinition getVariable(String name) {
-    return variables.get(name);
+    VariableDefinition retVal = variables.get(name);
+    if (retVal == null) {
+      for (AttributeDefinition attr : parameterizedObject.getAttributes()) {
+        String attrname = attr.getName();
+        if (attr.getName().equals("id") || attr.getName().equals("name") ||
+            attr.getName().equals("type") || attr.getName().equals("code")) {
+          String origObjName = attr.getLabelledOption("original", "object");
+          attrname = origObjName + "_" + attrname;
+        }
+        registerVariable(attrname, attr.getType());
+      }
+      retVal = variables.get(name);
+    }
+    return retVal;
   }
 
   public Set<ObjectDefinition> getDataObjects() {
