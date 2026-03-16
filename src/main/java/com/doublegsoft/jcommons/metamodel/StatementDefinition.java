@@ -29,6 +29,8 @@ public class StatementDefinition {
 
   protected InvocationDefinition invocation;
 
+  protected String error;
+
   protected final List<StatementDefinition> statements = new ArrayList<>();
 
   protected String originalText;
@@ -83,5 +85,13 @@ public class StatementDefinition {
 
   public void setOriginalText(String originalText) {
     this.originalText = originalText;
+  }
+
+  public String getError() {
+    return error;
+  }
+
+  public void setError(String error) {
+    this.error = error;
   }
 }
