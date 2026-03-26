@@ -197,6 +197,28 @@ public class UsecaseDefinition {
     return retVal;
   }
 
+  public List<StatementDefinition> getAllStatements() {
+    List<StatementDefinition> retVal = new ArrayList<>();
+    for (StatementDefinition stmt : statements) {
+      retVal.add(stmt);
+      if (!stmt.getStatements().isEmpty()) {
+        retVal.addAll(getAllStatements(stmt));
+      }
+    }
+    return retVal;
+  }
+
+  public List<StatementDefinition> getAllStatements(StatementDefinition stmt) {
+    if (stmt.getStatements().isEmpty()) {
+      return Collections.emptyList();
+    }
+    List<StatementDefinition> retVal = new ArrayList<>();
+    for (StatementDefinition inner : stmt.getStatements()) {
+      retVal.addAll(getAllStatements(inner));
+    }
+    return retVal;
+  }
+
   @Override
   public int hashCode() {
     int hash = 7;
