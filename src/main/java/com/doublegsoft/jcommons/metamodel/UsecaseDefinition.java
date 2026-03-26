@@ -214,6 +214,7 @@ public class UsecaseDefinition {
     }
     List<StatementDefinition> retVal = new ArrayList<>();
     for (StatementDefinition inner : stmt.getStatements()) {
+      retVal.add(inner);
       retVal.addAll(getAllStatements(inner));
     }
     return retVal;
