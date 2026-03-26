@@ -139,9 +139,7 @@ public class UsecaseDefinition {
   }
 
   public void registerVariable(String name, ObjectType type, boolean array) {
-    if (variables.containsKey(name)) {
-      return;
-    }
+    // 允许覆盖
     VariableDefinition var = new VariableDefinition();
     var.setName(name);
     if (array) {
