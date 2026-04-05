@@ -135,13 +135,22 @@ public class UsecaseDefinition {
   }
 
   public void registerVariable(String name, ObjectType type) {
-    registerVariable(name, type, false);
+    registerVariable(name, type, false, null);
+  }
+
+  public void registerVariable(String name, ObjectType type, String alias) {
+    registerVariable(name, type, false, alias);
   }
 
   public void registerVariable(String name, ObjectType type, boolean array) {
+    registerVariable(name, type, array, null);
+  }
+
+  public void registerVariable(String name, ObjectType type, boolean array, String alias) {
     // 允许覆盖
     VariableDefinition var = new VariableDefinition();
     var.setName(name);
+    var.setAlias(alias);
     if (array) {
       CollectionType collType = new CollectionType(type.getName());
       collType.setComponentType(type);
@@ -165,6 +174,13 @@ public class UsecaseDefinition {
         registerVariable(attrname, attr.getType());
       }
       retVal = variables.get(name);
+    }
+    if (retVal == null) {
+      for (VariableDefinition var : variables.values()) {
+        if (name.equals(var.getAlias())) {
+          return var;
+        }
+      }
     }
     return retVal;
   }
