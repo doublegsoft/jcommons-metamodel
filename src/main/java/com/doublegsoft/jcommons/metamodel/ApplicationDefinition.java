@@ -19,6 +19,7 @@
 package com.doublegsoft.jcommons.metamodel;
 
 import com.doublegsoft.jcommons.metabean.ModelDefinition;
+import com.doublegsoft.jcommons.metaui.PageDefinition;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -39,6 +40,8 @@ public class ApplicationDefinition {
     private final Set<ApplicationApiDefinition> apis = new HashSet<>();
     
     private final Set<UsecaseDefinition> usecases = new HashSet<>();
+
+    private final Set<PageDefinition> pages = new HashSet<>();
 
     public String getName() {
         return name;
@@ -123,34 +126,24 @@ public class ApplicationDefinition {
         }
         return null;
     }
-    
-//    public PageDefinition[] getPages(String module) {
-//        Set<PageDefinition> retVal = new HashSet<>();
-//        usecases.stream().forEach((u) -> {
-//            if (module.equalsIgnoreCase(u.getModule())) {
-//                retVal.add(u.getPage());
-//            }
-//        });
-//        return retVal.toArray(new PageDefinition[retVal.size()]);
-//    }
-//
-//    public PageDefinition[] getPages() {
-//        Set<PageDefinition> retVal = new HashSet<>();
-//        usecases.stream().forEach((u) -> {
-//            retVal.add(u.getPage());
-//        });
-//        return retVal.toArray(new PageDefinition[retVal.size()]);
-//    }
-//
-//    public PageDefinition findPage(String pageId) {
-//        PageDefinition[] pages = getPages();
-//        for (PageDefinition page : pages) {
-//            if (page.getId().equalsIgnoreCase(pageId)) {
-//                return page;
-//            }
-//        }
-//        return null;
-//    }
+
+    public PageDefinition[] getPages() {
+        return pages.toArray(new PageDefinition[pages.size()]);
+    }
+
+    public void addPage(PageDefinition page) {
+        pages.add(page);
+    }
+
+    public PageDefinition findPage(String pageId) {
+        PageDefinition[] pages = getPages();
+        for (PageDefinition page : pages) {
+            if (page.getId().equalsIgnoreCase(pageId)) {
+                return page;
+            }
+        }
+        return null;
+    }
 
 
 }
