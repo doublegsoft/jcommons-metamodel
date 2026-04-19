@@ -5,8 +5,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import static com.ibm.icu.lang.UCharacter.GraphemeClusterBreak.T;
-
 public class ReturnDefinition extends StatementDefinition {
 
   private final Set<String> variables = new HashSet<>();
