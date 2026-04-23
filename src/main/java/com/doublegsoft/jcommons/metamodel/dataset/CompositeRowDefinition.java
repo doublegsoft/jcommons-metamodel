@@ -33,14 +33,6 @@ public class CompositeRowDefinition {
     getJoinTree().addJoinPredicate(joinPredicate);
   }
 
-//  public List<QualifiedAttributeDefinition[]> getPairedQualifiedAttributes() {
-//    return Collections.unmodifiableList(pairedQualifiedAttributes);
-//  }
-
-//  public void addPairedQualifiedAttributes(QualifiedAttributeDefinition first, QualifiedAttributeDefinition second) {
-//    pairedQualifiedAttributes.add(new QualifiedAttributeDefinition[]{first, second});
-//  }
-
   public void addJoinPredicate(String leftObjectAlias, AttributeDefinition leftAttribute,
                                String rightObjectAlias, AttributeDefinition rightAttribute) {
     JoinPredicateDefinition predicate = new JoinPredicateDefinition();
