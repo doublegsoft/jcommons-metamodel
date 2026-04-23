@@ -1,4 +1,4 @@
-package com.doublegsoft.jcommons.metamodel;
+package com.doublegsoft.jcommons.metamodel.dataset;
 
 import java.util.ArrayList;
 import java.util.List;

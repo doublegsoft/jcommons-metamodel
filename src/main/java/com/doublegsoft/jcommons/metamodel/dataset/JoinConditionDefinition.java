@@ -1,4 +1,4 @@
-package com.doublegsoft.jcommons.metamodel;
+package com.doublegsoft.jcommons.metamodel.dataset;
 
 import com.doublegsoft.jcommons.metabean.ObjectDefinition;
 
