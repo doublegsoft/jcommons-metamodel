@@ -30,11 +30,11 @@ public class CompositeRowDefinition {
     return Collections.unmodifiableList(pairedQualifiedAttributes);
   }
 
-  void addPairedQualifiedAttributes(QualifiedAttributeDefinition first, QualifiedAttributeDefinition second) {
+  public void addPairedQualifiedAttributes(QualifiedAttributeDefinition first, QualifiedAttributeDefinition second) {
     pairedQualifiedAttributes.add(new QualifiedAttributeDefinition[]{first, second});
   }
 
-  void addQualifiedAttribute(QualifiedAttributeDefinition qualAttr) {
+  public void addQualifiedAttribute(QualifiedAttributeDefinition qualAttr) {
     qualifiedAttributes.add(qualAttr);
   }
 
