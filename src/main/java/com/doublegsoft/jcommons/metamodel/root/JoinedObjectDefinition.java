@@ -3,6 +3,7 @@ package com.doublegsoft.jcommons.metamodel.root;
 import com.doublegsoft.jcommons.metabean.AttributeDefinition;
 import com.doublegsoft.jcommons.metabean.ObjectDefinition;
 import com.doublegsoft.jcommons.metamodel.dataset.JoinConditionDefinition;
+import com.doublegsoft.jcommons.metamodel.dataset.QualifiedAttributeDefinition;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +13,8 @@ public class JoinedObjectDefinition {
   private JoinConditionDefinition joinCondition;
 
   private ObjectDefinition joinedObject;
+
+  private final List<QualifiedAttributeDefinition> qualifiedAttributes = new ArrayList<>();
 
   private final List<JoinedObjectDefinition> children = new ArrayList<>();
 
@@ -43,5 +46,9 @@ public class JoinedObjectDefinition {
 
   public List<JoinedObjectDefinition> getChildren() {
     return children;
+  }
+
+  public List<QualifiedAttributeDefinition> getQualifiedAttributes() {
+    return qualifiedAttributes;
   }
 }

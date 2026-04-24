@@ -1,6 +1,7 @@
 package com.doublegsoft.jcommons.metamodel.root;
 
 import com.doublegsoft.jcommons.metabean.ObjectDefinition;
+import com.doublegsoft.jcommons.metamodel.dataset.QualifiedAttributeDefinition;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,6 +9,8 @@ import java.util.List;
 public class AggregateRootDefinition {
 
   private final ObjectDefinition root;
+
+  private final List<QualifiedAttributeDefinition> qualifiedAttributes = new ArrayList<>();
 
   private final List<JoinedObjectDefinition> joinedObjects = new ArrayList<>();
 
@@ -21,5 +24,9 @@ public class AggregateRootDefinition {
 
   public List<JoinedObjectDefinition> getJoinedObjects() {
     return joinedObjects;
+  }
+
+  public List<QualifiedAttributeDefinition> getQualifiedAttributes() {
+    return qualifiedAttributes;
   }
 }
