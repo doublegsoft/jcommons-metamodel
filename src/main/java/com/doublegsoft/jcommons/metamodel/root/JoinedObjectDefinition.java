@@ -1,5 +1,6 @@
 package com.doublegsoft.jcommons.metamodel.root;
 
+import com.doublegsoft.jcommons.metabean.AttributeDefinition;
 import com.doublegsoft.jcommons.metabean.ObjectDefinition;
 import com.doublegsoft.jcommons.metamodel.dataset.JoinConditionDefinition;
 
