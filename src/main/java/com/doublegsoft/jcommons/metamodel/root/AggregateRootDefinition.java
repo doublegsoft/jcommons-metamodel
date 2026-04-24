@@ -1,4 +1,4 @@
-package com.doublegsoft.jcommons.metamodel.graph;
+package com.doublegsoft.jcommons.metamodel.root;
 
 import com.doublegsoft.jcommons.metabean.ObjectDefinition;
 
