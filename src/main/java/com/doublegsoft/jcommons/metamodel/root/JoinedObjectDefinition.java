@@ -12,13 +12,19 @@ public class JoinedObjectDefinition {
 
   private JoinConditionDefinition joinCondition;
 
-  private ObjectDefinition joinedObject;
+  private final ObjectDefinition joinedObject;
 
   private final List<QualifiedAttributeDefinition> qualifiedAttributes = new ArrayList<>();
 
   private final List<JoinedObjectDefinition> children = new ArrayList<>();
 
-  private boolean oneToOne;
+  private boolean collection;
+
+  private boolean implicit;
+
+  public JoinedObjectDefinition(ObjectDefinition joinedObject) {
+    this.joinedObject = joinedObject;
+  }
 
   public JoinConditionDefinition getJoinCondition() {
     return joinCondition;
@@ -32,16 +38,20 @@ public class JoinedObjectDefinition {
     return joinedObject;
   }
 
-  public void setJoinedObject(ObjectDefinition joinedObject) {
-    this.joinedObject = joinedObject;
+  public boolean isCollection() {
+    return collection;
   }
 
-  public boolean isOneToOne() {
-    return oneToOne;
+  public void setCollection(boolean collection) {
+    this.collection = collection;
   }
 
-  public void setOneToOne(boolean oneToOne) {
-    this.oneToOne = oneToOne;
+  public boolean isImplicit() {
+    return implicit;
+  }
+
+  public void setImplicit(boolean implicit) {
+    this.implicit = implicit;
   }
 
   public List<JoinedObjectDefinition> getChildren() {
