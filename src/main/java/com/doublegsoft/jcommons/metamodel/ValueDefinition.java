@@ -20,6 +20,7 @@ package com.doublegsoft.jcommons.metamodel;
 
 import com.doublegsoft.jcommons.metabean.AttributeDefinition;
 import com.doublegsoft.jcommons.metabean.ObjectDefinition;
+import com.doublegsoft.jcommons.metamodel.dataset.CompositeRowDefinition;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
@@ -38,6 +39,8 @@ public class ValueDefinition {
   private String variable;
 
   private AttributeDefinition attributeValue;
+
+  private CompositeRowDefinition compositeRowValue;
 
   private ObjectDefinition arrayValue;
 
@@ -161,5 +164,13 @@ public class ValueDefinition {
 
   public void setCalcExpr(CalcExprDefinition calcExpr) {
     this.calcExpr = calcExpr;
+  }
+
+  public CompositeRowDefinition getCompositeRowValue() {
+    return compositeRowValue;
+  }
+
+  public void setCompositeRowValue(CompositeRowDefinition compositeRowValue) {
+    this.compositeRowValue = compositeRowValue;
   }
 }
