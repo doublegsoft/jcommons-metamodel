@@ -12,7 +12,7 @@ public class AggregateRootDefinition {
 
   private final List<QualifiedAttributeDefinition> qualifiedAttributes = new ArrayList<>();
 
-  private final List<JoinedObjectDefinition> joinedObjects = new ArrayList<>();
+  private final List<JoinedObjectDefinition> children = new ArrayList<>();
 
   public AggregateRootDefinition(ObjectDefinition root) {
     this.root = root;
@@ -22,11 +22,29 @@ public class AggregateRootDefinition {
     return root;
   }
 
-  public List<JoinedObjectDefinition> getJoinedObjects() {
-    return joinedObjects;
+  public List<JoinedObjectDefinition> getChildren() {
+    return children;
   }
 
   public List<QualifiedAttributeDefinition> getQualifiedAttributes() {
     return qualifiedAttributes;
   }
+
+  public List<JoinedObjectDefinition> getJoinedObjects() {
+    List<JoinedObjectDefinition> retVal = new ArrayList<>();
+    for (JoinedObjectDefinition child : children) {
+      retVal.addAll(getJoinedObjects(child));
+    }
+    return retVal;
+  }
+
+  private List<JoinedObjectDefinition> getJoinedObjects(JoinedObjectDefinition parent) {
+    List<JoinedObjectDefinition> retVal = new ArrayList<>();
+    retVal.add(parent);
+    for (JoinedObjectDefinition child : parent.getChildren()) {
+      retVal.addAll(getJoinedObjects(child));
+    }
+    return retVal;
+  }
+
 }

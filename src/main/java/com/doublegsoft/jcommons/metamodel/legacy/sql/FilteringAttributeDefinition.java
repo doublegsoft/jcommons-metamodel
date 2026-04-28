@@ -16,7 +16,7 @@
  * is strictly forbidden unless prior written permission is obtained
  * from doublegsoft.com.
  */
-package com.doublegsoft.jcommons.metamodel.sql;
+package com.doublegsoft.jcommons.metamodel.legacy.sql;
 
 import com.doublegsoft.jcommons.metabean.AttributeDefinition;
 import java.util.ArrayList;

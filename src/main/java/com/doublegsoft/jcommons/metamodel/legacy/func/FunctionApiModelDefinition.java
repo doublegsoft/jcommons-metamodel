@@ -16,7 +16,7 @@
  * is strictly forbidden unless prior written permission is obtained
  * from doublegsoft.com.
  */
-package com.doublegsoft.jcommons.metamodel.func;
+package com.doublegsoft.jcommons.metamodel.legacy.func;
 
 import com.doublegsoft.jcommons.metamodel.ApiModelDefinition;
 

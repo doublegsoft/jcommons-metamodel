@@ -16,7 +16,7 @@
  * is strictly forbidden unless prior written permission is obtained
  * from doublegsoft.com.
  */
-package com.doublegsoft.jcommons.metamodel.rest;
+package com.doublegsoft.jcommons.metamodel.legacy.rest;
 
 import com.doublegsoft.jcommons.metamodel.ReturnedObjectDefinition;
 import com.doublegsoft.jcommons.metamodel.ApiModelDefinition;

@@ -16,9 +16,9 @@
  * is strictly forbidden unless prior written permission is obtained
  * from doublegsoft.com.
  */
-package com.doublegsoft.jcommons.metamodel.mvc;
+package com.doublegsoft.jcommons.metamodel.legacy.mvc;
 
-import com.doublegsoft.jcommons.metamodel.rest.RestApiModelDefinition;
+import com.doublegsoft.jcommons.metamodel.legacy.rest.RestApiModelDefinition;
 
 /**
  * The {@link MVCAPIModelDefinition} type encapsulates the required data to 
