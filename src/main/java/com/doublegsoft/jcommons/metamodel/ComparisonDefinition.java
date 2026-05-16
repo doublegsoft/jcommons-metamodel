@@ -23,7 +23,7 @@ import java.util.List;
 
 public class ComparisonDefinition extends StatementDefinition {
 
-  private String comparand;
+  private VariableDefinition comparand;
 
   private String comparator;
 
@@ -33,11 +33,11 @@ public class ComparisonDefinition extends StatementDefinition {
 
   private final List<ComparisonDefinition> orComparisons = new ArrayList<>();
 
-  public String getComparand() {
+  public VariableDefinition getComparand() {
     return comparand;
   }
 
-  public void setComparand(String comparand) {
+  public void setComparand(VariableDefinition comparand) {
     this.comparand = comparand;
   }
 
