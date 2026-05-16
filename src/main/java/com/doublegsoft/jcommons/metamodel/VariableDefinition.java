@@ -1,5 +1,6 @@
 package com.doublegsoft.jcommons.metamodel;
 
+import com.doublegsoft.jcommons.metabean.AttributeDefinition;
 import com.doublegsoft.jcommons.metabean.ObjectDefinition;
 import com.doublegsoft.jcommons.metabean.type.CollectionType;
 import com.doublegsoft.jcommons.metabean.type.ObjectType;
@@ -7,6 +8,8 @@ import com.doublegsoft.jcommons.metabean.type.ObjectType;
 import java.util.Objects;
 
 public class VariableDefinition {
+
+  private AttributeDefinition attr;
 
   private ObjectType type;
 
@@ -49,6 +52,14 @@ public class VariableDefinition {
 
   public boolean isCollection() {
     return type != null && type instanceof CollectionType;
+  }
+
+  public AttributeDefinition getAttribute() {
+    return attr;
+  }
+
+  public void setAttribute(AttributeDefinition attr) {
+    this.attr = attr;
   }
 
   public ObjectType getComponentType() {
