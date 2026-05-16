@@ -9,8 +9,6 @@ import java.util.Objects;
 
 public class VariableDefinition {
 
-  private AttributeDefinition attr;
-
   private ObjectType type;
 
   private String name;
@@ -54,12 +52,12 @@ public class VariableDefinition {
     return type != null && type instanceof CollectionType;
   }
 
-  public AttributeDefinition getAttribute() {
-    return attr;
-  }
-
-  public void setAttribute(AttributeDefinition attr) {
-    this.attr = attr;
+  public AttributeDefinition getAttribute(String name) {
+    if (type == null) {
+      throw new IllegalArgumentException("this variable is not of an data object type.");
+    }
+    ObjectDefinition dataObj = (ObjectDefinition) type;
+    return dataObj.getAttribute(name);
   }
 
   public ObjectType getComponentType() {
