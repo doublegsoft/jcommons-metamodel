@@ -56,7 +56,12 @@ public class VariableDefinition {
     if (type == null) {
       throw new IllegalArgumentException("this variable is not of an data object type.");
     }
-    ObjectDefinition dataObj = (ObjectDefinition) type;
+    ObjectDefinition dataObj = null;
+    if (type instanceof CollectionType) {
+      dataObj = (ObjectDefinition) getComponentType();
+    } else {
+      dataObj = (ObjectDefinition) type;
+    }
     return dataObj.getAttribute(name);
   }
 
