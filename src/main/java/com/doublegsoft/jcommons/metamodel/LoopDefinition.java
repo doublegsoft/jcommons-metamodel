@@ -27,27 +27,27 @@ import java.util.Map;
 
 public class LoopDefinition extends StatementDefinition {
 
-  private String itemVar;
+  private VariableDefinition itemVar;
 
-  private String arrayVar;
+  private VariableDefinition arrayVar;
 
   private ObjectDefinition componentType;
 
   private final Map<String, VariableDefinition> variables = new HashMap<>();
 
-  public String getItemVar() {
+  public VariableDefinition getItemVar() {
     return itemVar;
   }
 
-  public void setItemVar(String itemVar) {
+  public void setItemVar(VariableDefinition itemVar) {
     this.itemVar = itemVar;
   }
 
-  public String getArrayVar() {
+  public VariableDefinition getArrayVar() {
     return arrayVar;
   }
 
-  public void setArrayVar(String arrayVar) {
+  public void setArrayVar(VariableDefinition arrayVar) {
     this.arrayVar = arrayVar;
   }
 

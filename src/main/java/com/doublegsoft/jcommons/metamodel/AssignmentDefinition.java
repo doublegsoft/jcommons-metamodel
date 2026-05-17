@@ -20,17 +20,17 @@ package com.doublegsoft.jcommons.metamodel;
 
 public class AssignmentDefinition extends StatementDefinition {
 
-  private String assignee;
+  private VariableDefinition assignee;
 
   private String assignOp;
 
   private ValueDefinition value;
 
-  public String getAssignee() {
+  public VariableDefinition getAssignee() {
     return assignee;
   }
 
-  public void setAssignee(String assignee) {
+  public void setAssignee(VariableDefinition assignee) {
     this.assignee = assignee;
   }
 
