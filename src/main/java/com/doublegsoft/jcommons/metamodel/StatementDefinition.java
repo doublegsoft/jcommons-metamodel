@@ -31,6 +31,8 @@ public class StatementDefinition {
 
   protected String error;
 
+  private boolean exceptional = false;
+
   protected final List<StatementDefinition> statements = new ArrayList<>();
 
   protected String originalText;
@@ -93,5 +95,14 @@ public class StatementDefinition {
 
   public void setError(String error) {
     this.error = error;
+    this.exceptional = true;
+  }
+
+  public boolean isExceptional() {
+    return exceptional;
+  }
+
+  public void setExceptional(boolean exceptional) {
+    this.exceptional = exceptional;
   }
 }

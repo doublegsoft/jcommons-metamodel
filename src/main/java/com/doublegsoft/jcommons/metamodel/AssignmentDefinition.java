@@ -26,8 +26,6 @@ public class AssignmentDefinition extends StatementDefinition {
 
   private ValueDefinition value;
 
-  private boolean exceptional = false;
-
   public VariableDefinition getAssignee() {
     return assignee;
   }
@@ -50,13 +48,5 @@ public class AssignmentDefinition extends StatementDefinition {
 
   public void setAssignOp(String assignOp) {
     this.assignOp = assignOp;
-  }
-
-  public boolean isExceptional() {
-    return exceptional;
-  }
-
-  public void setExceptional(boolean exceptional) {
-    this.exceptional = exceptional;
   }
 }
