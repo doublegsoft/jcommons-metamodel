@@ -9,7 +9,7 @@ public class InvocationDefinition {
 
   private String error;
 
-  private final List<String> arguments = new ArrayList<>();
+  private final List<VariableDefinition> arguments = new ArrayList<>();
 
   public String getMethod() {
     return method;
@@ -19,7 +19,7 @@ public class InvocationDefinition {
     this.method = method;
   }
 
-  public List<String> getArguments() {
+  public List<VariableDefinition> getArguments() {
     return arguments;
   }
 
