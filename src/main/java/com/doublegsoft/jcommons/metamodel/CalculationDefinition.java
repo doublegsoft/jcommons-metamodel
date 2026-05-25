@@ -1,6 +1,4 @@
-package com.doublegsoft.jcommons.metamodel.expr;
-
-import com.doublegsoft.jcommons.metamodel.ValueDefinition;
+package com.doublegsoft.jcommons.metamodel;
 
 public class CalculationDefinition extends ValueDefinition {
 
