@@ -36,7 +36,7 @@ public class ValueDefinition {
 
   private String bool;
 
-  private String variable;
+  private VariableDefinition variable;
 
   private AttributeDefinition attributeValue;
 
@@ -114,11 +114,11 @@ public class ValueDefinition {
     this.objectValue = objectValue;
   }
 
-  public String getVariable() {
+  public VariableDefinition getVariable() {
     return variable;
   }
 
-  public void setVariable(String variable) {
+  public void setVariable(VariableDefinition variable) {
     this.variable = variable;
   }
 
