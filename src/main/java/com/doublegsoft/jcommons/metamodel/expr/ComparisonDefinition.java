@@ -5,11 +5,11 @@ import com.doublegsoft.jcommons.metamodel.ValueDefinition;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ComparisonExpressionDefinition extends ValueDefinition {
+public class ComparisonDefinition extends ValueDefinition {
 
-  private final List<ComparisonExpressionDefinition> andExpressions = new ArrayList<>();
+  private final List<ComparisonDefinition> andExpressions = new ArrayList<>();
 
-  private final List<ComparisonExpressionDefinition> orExpressions = new ArrayList<>();
+  private final List<ComparisonDefinition> orExpressions = new ArrayList<>();
 
   private ValueDefinition comparand;
 
@@ -17,11 +17,11 @@ public class ComparisonExpressionDefinition extends ValueDefinition {
 
   private String comparator;
 
-  public List<ComparisonExpressionDefinition> getAndExpressions() {
+  public List<ComparisonDefinition> getAndExpressions() {
     return andExpressions;
   }
 
-  public List<ComparisonExpressionDefinition> getOrExpressions() {
+  public List<ComparisonDefinition> getOrExpressions() {
     return orExpressions;
   }
 

@@ -2,15 +2,15 @@ package com.doublegsoft.jcommons.metamodel.expr;
 
 import com.doublegsoft.jcommons.metamodel.ValueDefinition;
 
-public class CalculationExpressionDefinition extends ValueDefinition {
+public class CalculationDefinition extends ValueDefinition {
 
   private ValueDefinition value;
 
   private String operator;
 
-  private CalculationExpressionDefinition leftOperand;
+  private CalculationDefinition leftOperand;
 
-  private CalculationExpressionDefinition rightOperand;
+  private CalculationDefinition rightOperand;
 
   public ValueDefinition getValue() {
     return value;
@@ -28,19 +28,19 @@ public class CalculationExpressionDefinition extends ValueDefinition {
     this.operator = operator;
   }
 
-  public CalculationExpressionDefinition getLeftOperand() {
+  public CalculationDefinition getLeftOperand() {
     return leftOperand;
   }
 
-  public void setLeftOperand(CalculationExpressionDefinition leftOperand) {
+  public void setLeftOperand(CalculationDefinition leftOperand) {
     this.leftOperand = leftOperand;
   }
 
-  public CalculationExpressionDefinition getRightOperand() {
+  public CalculationDefinition getRightOperand() {
     return rightOperand;
   }
 
-  public void setRightOperand(CalculationExpressionDefinition rightOperand) {
+  public void setRightOperand(CalculationDefinition rightOperand) {
     this.rightOperand = rightOperand;
   }
 }
