@@ -48,7 +48,7 @@ public class ValueDefinition {
 
   private ObjectDefinition filterValue;
 
-  private CalcExprDefinition calcExpr;
+  private CalculationDefinition calcExpr;
 
   private String originalText;
 
@@ -158,11 +158,11 @@ public class ValueDefinition {
     this.invocation = invocation;
   }
 
-  public CalcExprDefinition getCalcExpr() {
+  public CalculationDefinition getCalcExpr() {
     return calcExpr;
   }
 
-  public void setCalcExpr(CalcExprDefinition calcExpr) {
+  public void setCalcExpr(CalculationDefinition calcExpr) {
     this.calcExpr = calcExpr;
   }
 
