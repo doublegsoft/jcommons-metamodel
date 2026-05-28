@@ -26,124 +26,124 @@ import java.util.Set;
 
 /**
  * It is a definition for whole things needed by application.
- * 
+ *
  * @author <a href="mailto:guo.guo.gan@gmail.com">Christian Gann</a>
- * 
+ *
  * @since 2.0
  */
 public class ApplicationDefinition {
-    
-    private String name;
-    
-    private ModelDefinition model;
-    
-    private final Set<ApplicationApiDefinition> apis = new HashSet<>();
-    
-    private final Set<UsecaseDefinition> usecases = new HashSet<>();
 
-    private final Set<PageDefinition> pages = new HashSet<>();
+  private String name;
 
-    public String getName() {
-        return name;
-    }
+  private ModelDefinition model;
 
-    public void setName(String name) {
-        this.name = name;
-    }
+  private final Set<ApplicationApiDefinition> apis = new HashSet<>();
 
-    public ModelDefinition getModel() {
-        return model;
-    }
+  private final Set<UsecaseDefinition> usecases = new HashSet<>();
 
-    public void setModel(ModelDefinition model) {
-        this.model = model;
+  private final Set<PageDefinition> pages = new HashSet<>();
+
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public ModelDefinition getModel() {
+    return model;
+  }
+
+  public void setModel(ModelDefinition model) {
+    this.model = model;
+  }
+
+  public void addAPI(ApplicationApiDefinition api) {
+    apis.add(api);
+  }
+
+  public ApplicationApiDefinition[] getAPI() {
+    return apis.toArray(new ApplicationApiDefinition[apis.size()]);
+  }
+
+  public void addUsecase(UsecaseDefinition usecase) {
+    usecases.add(usecase);
+  }
+
+  public UsecaseDefinition[] getUsecases() {
+    return usecases.toArray(new UsecaseDefinition[usecases.size()]);
+  }
+
+  public UsecaseDefinition findUsecase(String module, String name) {
+    for (UsecaseDefinition usecase : usecases) {
+      if (usecase.getModule().equals(module) && usecase.getName().equals(name)) {
+        return usecase;
+      }
     }
-    
-    public void addAPI(ApplicationApiDefinition api) {
-        apis.add(api);
-    }
-    
-    public ApplicationApiDefinition[] getAPI() {
-        return apis.toArray(new ApplicationApiDefinition[apis.size()]);
-    }
-    
-    public void addUsecase(UsecaseDefinition usecase) {
-        usecases.add(usecase);
-    }
-    
-    public UsecaseDefinition[] getUsecases() {
-        return usecases.toArray(new UsecaseDefinition[usecases.size()]);
-    }
-    
-    public UsecaseDefinition findUsecase(String module, String name) {
-        for (UsecaseDefinition usecase : usecases) {
-            if (usecase.getModule().equals(module) && usecase.getName().equals(name)) {
-                return usecase;
-            }
+    return null;
+  }
+
+  public String[] getModules() {
+    Set<String> retVal = new HashSet<>();
+    usecases.stream().forEach((u) -> {
+      retVal.add(u.getModule());
+    });
+    apis.stream().forEach(apiApp -> {
+      apiApp.getAPIs().stream().forEach(api -> {
+        retVal.add(api.getModule());
+      });
+    });
+    return retVal.toArray(new String[retVal.size()]);
+  }
+
+  public String[] getModules(String modelType) {
+    Set<String> retVal = new HashSet<>();
+    usecases.stream().forEach((u) -> {
+      if (modelType.equalsIgnoreCase("usecase") || modelType.equalsIgnoreCase("page")) {
+        retVal.add(u.getModule());
+      }
+    });
+    apis.stream().forEach(apiApp -> {
+      apiApp.getAPIs().stream().forEach(api -> {
+        if (modelType.equalsIgnoreCase(api.getType())) {
+          retVal.add(api.getModule());
         }
-        return null;
-    }
-    
-    public String[] getModules() {
-        Set<String> retVal = new HashSet<>();
-        usecases.stream().forEach((u) -> {
-            retVal.add(u.getModule());
-        });
-        apis.stream().forEach(apiApp -> {
-            apiApp.getAPIs().stream().forEach(api -> {
-                retVal.add(api.getModule());
-            });
-        });
-        return retVal.toArray(new String[retVal.size()]);
-    }
-    
-    public String[] getModules(String modelType) {
-        Set<String> retVal = new HashSet<>();
-        usecases.stream().forEach((u) -> {
-            if (modelType.equalsIgnoreCase("usecase") || modelType.equalsIgnoreCase("page")) {
-                retVal.add(u.getModule());
-            }
-        });
-        apis.stream().forEach(apiApp -> {
-            apiApp.getAPIs().stream().forEach(api -> {
-                if (modelType.equalsIgnoreCase(api.getType())) {
-                    retVal.add(api.getModule());
-                }
-            });
-        });
-        return retVal.toArray(new String[retVal.size()]);
-    }
-    
-    public ApiDefinition findApi(String module, String apiType, String apiName) {
-        for (ApplicationApiDefinition apiApp : apis) {
-            for (ApiDefinition api : apiApp.getAPIs()) {
-                 if (module.equalsIgnoreCase(api.getModule()) &&
-                        apiType.equalsIgnoreCase(api.getType()) &&
-                        apiName.equalsIgnoreCase(api.getName())) {
-                    return api;
-                }
-            }
+      });
+    });
+    return retVal.toArray(new String[retVal.size()]);
+  }
+
+  public ApiDefinition findApi(String module, String apiType, String apiName) {
+    for (ApplicationApiDefinition apiApp : apis) {
+      for (ApiDefinition api : apiApp.getAPIs()) {
+        if (module.equalsIgnoreCase(api.getModule()) &&
+            apiType.equalsIgnoreCase(api.getType()) &&
+            apiName.equalsIgnoreCase(api.getName())) {
+          return api;
         }
-        return null;
+      }
     }
+    return null;
+  }
 
-    public PageDefinition[] getPages() {
-        return pages.toArray(new PageDefinition[pages.size()]);
-    }
+  public PageDefinition[] getPages() {
+    return pages.toArray(new PageDefinition[0]);
+  }
 
-    public void addPage(PageDefinition page) {
-        pages.add(page);
-    }
+  public void addPage(PageDefinition page) {
+    pages.add(page);
+  }
 
-    public PageDefinition findPage(String pageId) {
-        PageDefinition[] pages = getPages();
-        for (PageDefinition page : pages) {
-            if (page.getId().equalsIgnoreCase(pageId)) {
-                return page;
-            }
-        }
-        return null;
+  public PageDefinition findPage(String pageId) {
+    PageDefinition[] pages = getPages();
+    for (PageDefinition page : pages) {
+      if (page.getId().equalsIgnoreCase(pageId)) {
+        return page;
+      }
     }
+    return null;
+  }
 
 
 }
