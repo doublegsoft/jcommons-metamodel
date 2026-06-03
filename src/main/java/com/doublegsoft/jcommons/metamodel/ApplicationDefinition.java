@@ -89,29 +89,35 @@ public class ApplicationDefinition {
     usecases.stream().forEach((u) -> {
       retVal.add(u.getModule());
     });
-    apis.stream().forEach(apiApp -> {
-      apiApp.getAPIs().stream().forEach(api -> {
+    apis.forEach(apiApp -> {
+      apiApp.getAPIs().forEach(api -> {
         retVal.add(api.getModule());
       });
     });
-    return retVal.toArray(new String[retVal.size()]);
+    pages.forEach(p -> {
+      retVal.add(p.getModule());
+    });
+    return retVal.toArray(new String[0]);
   }
 
   public String[] getModules(String modelType) {
     Set<String> retVal = new HashSet<>();
-    usecases.stream().forEach((u) -> {
+    usecases.forEach((u) -> {
       if (modelType.equalsIgnoreCase("usecase") || modelType.equalsIgnoreCase("page")) {
         retVal.add(u.getModule());
       }
     });
-    apis.stream().forEach(apiApp -> {
-      apiApp.getAPIs().stream().forEach(api -> {
+    apis.forEach(apiApp -> {
+      apiApp.getAPIs().forEach(api -> {
         if (modelType.equalsIgnoreCase(api.getType())) {
           retVal.add(api.getModule());
         }
       });
     });
-    return retVal.toArray(new String[retVal.size()]);
+    pages.forEach(p -> {
+      retVal.add(p.getModule());
+    });
+    return retVal.toArray(new String[0]);
   }
 
   public ApiDefinition findApi(String module, String apiType, String apiName) {
