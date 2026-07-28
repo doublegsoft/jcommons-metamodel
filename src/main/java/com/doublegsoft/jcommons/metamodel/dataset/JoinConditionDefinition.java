@@ -8,15 +8,15 @@ import java.util.Objects;
 
 public class JoinConditionDefinition {
 
-  private final String leftObjectAlias;
-
-  private final String rightObjectAlias;
-
   private final ObjectDefinition leftObject;
 
   private final ObjectDefinition rightObject;
 
   private final List<JoinPredicateDefinition> predicates = new ArrayList<>();
+
+  private String leftObjectAlias;
+
+  private String rightObjectAlias;
 
   public JoinConditionDefinition(JoinPredicateDefinition predicate) {
     this.leftObjectAlias = predicate.getLeftObjectAlias();
@@ -40,6 +40,14 @@ public class JoinConditionDefinition {
 
   public String getRightObjectAlias() {
     return rightObjectAlias;
+  }
+
+  public void setLeftObjectAlias(String leftObjectAlias) {
+    this.leftObjectAlias = leftObjectAlias;
+  }
+
+  public void setRightObjectAlias(String rightObjectAlias) {
+    this.rightObjectAlias = rightObjectAlias;
   }
 
   public List<JoinPredicateDefinition> getJoinPredicates() {
