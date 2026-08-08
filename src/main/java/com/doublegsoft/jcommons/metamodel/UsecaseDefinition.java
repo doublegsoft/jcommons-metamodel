@@ -162,6 +162,10 @@ public class UsecaseDefinition {
   }
 
   public VariableDefinition getVariable(String name) {
+    if (name.contains(".")) {
+      String[] strs = name.split("\\.");
+      name = strs[0];
+    }
     VariableDefinition retVal = variables.get(name);
     if (retVal == null) {
       for (AttributeDefinition attr : parameterizedObject.getAttributes()) {
