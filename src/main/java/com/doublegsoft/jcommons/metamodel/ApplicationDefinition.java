@@ -21,7 +21,9 @@ package com.doublegsoft.jcommons.metamodel;
 import com.doublegsoft.jcommons.metabean.ModelDefinition;
 import com.doublegsoft.jcommons.metaui.PageDefinition;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -41,7 +43,7 @@ public class ApplicationDefinition {
 
   private final Set<UsecaseDefinition> usecases = new HashSet<>();
 
-  private final Set<PageDefinition> pages = new HashSet<>();
+  private final List<PageDefinition> pages = new ArrayList<>();
 
   public String getName() {
     return name;
