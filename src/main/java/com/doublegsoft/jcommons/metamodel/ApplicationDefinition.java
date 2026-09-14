@@ -19,7 +19,9 @@
 package com.doublegsoft.jcommons.metamodel;
 
 import com.doublegsoft.jcommons.metabean.ModelDefinition;
+import com.doublegsoft.jcommons.metabean.ObjectDefinition;
 import com.doublegsoft.jcommons.metaui.PageDefinition;
+import com.doublegsoft.jcommons.utils.Strings;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -99,6 +101,13 @@ public class ApplicationDefinition {
     pages.forEach(p -> {
       retVal.add(p.getModule());
     });
+    for (ObjectDefinition obj : model.getObjects()) {
+      if (obj.isLabelled("module")) {
+        retVal.add(obj.getLabelledOption("module", "name"));
+      } else if (!Strings.isEmpty(obj.getModuleName())) {
+        retVal.add(obj.getModuleName());
+      }
+    }
     return retVal.toArray(new String[0]);
   }
 
