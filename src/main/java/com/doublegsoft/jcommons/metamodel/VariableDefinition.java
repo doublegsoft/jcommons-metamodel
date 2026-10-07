@@ -13,8 +13,6 @@ public class VariableDefinition {
 
   private String name;
 
-  private String subname;
-
   private String alias;
 
   public VariableDefinition() {
@@ -52,14 +50,6 @@ public class VariableDefinition {
 
   public boolean isCollection() {
     return type != null && type instanceof CollectionType;
-  }
-
-  public String getSubname() {
-    return subname;
-  }
-
-  public void setSubname(String subname) {
-    this.subname = subname;
   }
 
   public AttributeDefinition getAttribute(String name) {
