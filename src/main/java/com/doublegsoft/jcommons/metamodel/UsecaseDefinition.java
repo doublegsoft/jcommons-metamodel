@@ -52,7 +52,7 @@ public class UsecaseDefinition {
 
   private final List<StatementDefinition> statements = new ArrayList<>();
 
-  private final Map<String, VariableDefinition> variables = new HashMap<>();
+  private final Map<String, Map<String,VariableDefinition>> variables = new HashMap<>();
 
   private final ModelDefinition contextModel = new ModelDefinition();
 
@@ -158,18 +158,21 @@ public class UsecaseDefinition {
     } else {
       var.setType(type);
     }
-    variables.put(name, var);
+    putVariableInternally(name, var);
   }
 
   public VariableDefinition getVariable(String name) {
+    String attrname = null;
+    String varname = name;
     if (name.contains(".")) {
       String[] strs = name.split("\\.");
-      name = strs[0];
+      varname = strs[0];
+      attrname = strs[1];
     }
-    VariableDefinition retVal = variables.get(name);
+    VariableDefinition retVal = getVariableInternally(name);
     if (retVal == null) {
       for (AttributeDefinition attr : parameterizedObject.getAttributes()) {
-        String attrname = attr.getName();
+        attrname = attr.getName();
         if (attr.getName().equals("id") || attr.getName().equals("name") ||
             attr.getName().equals("type") || attr.getName().equals("code")) {
           String origObjName = attr.getLabelledOption("original", "object");
@@ -177,12 +180,27 @@ public class UsecaseDefinition {
         }
         registerVariable(attrname, attr.getType());
       }
-      retVal = variables.get(name);
+      retVal = getVariableInternally(name);
+    } else {
+      // 变量存在
+      if (retVal.getAttribute() == null && attrname != null) {
+        ObjectDefinition obj = (ObjectDefinition) retVal.getType();
+        retVal = retVal.clone();
+        retVal.setAttribute(obj.getAttribute(attrname));
+        putVariableInternally(name, retVal);
+      } else if (retVal.getAttribute() != null && !retVal.getAttribute().getName().equals(attrname)) {
+        ObjectDefinition obj = retVal.getAttribute().getParent();
+        retVal = retVal.clone();
+        retVal.setAttribute(obj.getAttribute(attrname));
+        putVariableInternally(name, retVal);
+      }
     }
     if (retVal == null) {
-      for (VariableDefinition var : variables.values()) {
-        if (name.equals(var.getAlias())) {
-          return var;
+      for (Map<String, VariableDefinition> vars : variables.values()) {
+        for (VariableDefinition var : vars.values()) {
+          if (name.equals(var.getAlias())) {
+            return var;
+          }
         }
       }
     }
@@ -304,6 +322,51 @@ public class UsecaseDefinition {
       }
     }
     return retVal;
+  }
+
+  private void putVariableInternally(String name, VariableDefinition var) {
+    String varname = name;
+    String attrname = null;
+    if (name.contains(".")) {
+      String[] strs = name.split("\\.");
+      varname = strs[0];
+      attrname = strs[1];
+    }
+    Map<String, VariableDefinition> vars = variables.get(varname);
+    if (vars == null) {
+      vars = new HashMap<>();
+      variables.put(varname, vars);
+    }
+    if (attrname == null) {
+      vars.put(varname, var);
+    } else {
+      vars.put(attrname, var);
+    }
+  }
+
+  private VariableDefinition getVariableInternally(String name) {
+    String varname = name;
+    String attrname = null;
+    if (name.contains(".")) {
+      String[] strs = name.split("\\.");
+      varname = strs[0];
+      attrname = strs[1];
+    }
+    Map<String, VariableDefinition> vars = variables.get(varname);
+    if (vars == null) {
+      return null;
+    }
+    if (attrname == null) {
+      return vars.get(varname);
+    } else {
+      if (!vars.containsKey(attrname)) {
+        ObjectDefinition obj = (ObjectDefinition) vars.get(varname).getType();
+        VariableDefinition newVar = vars.get(varname).clone();
+        newVar.setAttribute(obj.getAttribute(attrname));
+        vars.put(attrname, newVar);
+      }
+      return vars.get(attrname);
+    }
   }
 
 }

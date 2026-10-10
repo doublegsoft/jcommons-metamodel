@@ -83,6 +83,14 @@ public class VariableDefinition {
     return collType.getComponentType();
   }
 
+  public VariableDefinition clone() {
+    VariableDefinition retVal = new VariableDefinition();
+    retVal.setName(getName());
+    retVal.setType(getType());
+    retVal.setAlias(getAlias());
+    return retVal;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (o == null || getClass() != o.getClass()) return false;
