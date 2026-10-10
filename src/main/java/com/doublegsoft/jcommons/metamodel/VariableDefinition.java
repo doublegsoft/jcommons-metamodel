@@ -15,6 +15,8 @@ public class VariableDefinition {
 
   private String alias;
 
+  private AttributeDefinition attribute;
+
   public VariableDefinition() {
 
   }
@@ -46,6 +48,14 @@ public class VariableDefinition {
 
   public void setAlias(String alias) {
     this.alias = alias;
+  }
+
+  public AttributeDefinition getAttribute() {
+    return attribute;
+  }
+
+  public void setAttribute(AttributeDefinition attribute) {
+    this.attribute = attribute;
   }
 
   public boolean isCollection() {
