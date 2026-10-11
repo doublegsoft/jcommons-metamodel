@@ -258,6 +258,30 @@ public class UsecaseDefinition {
     return retVal;
   }
 
+  /**
+   * Gets all invocations defined in usecase.
+   */
+  public List<InvocationDefinition> getInvocations() {
+    List<InvocationDefinition> retVal = new ArrayList<>();
+    for (StatementDefinition stmt : getAllStatements()) {
+      if (stmt.getInvocation() != null) {
+        retVal.add(stmt.getInvocation());
+      }
+      if (stmt instanceof ComparisonDefinition) {
+        ComparisonDefinition cmp = (ComparisonDefinition) stmt;
+        if (cmp.getValue() != null && cmp.getValue().getInvocation() != null) {
+          retVal.add(cmp.getValue().getInvocation());
+        }
+      } else if (stmt instanceof AssignmentDefinition) {
+        AssignmentDefinition assign = (AssignmentDefinition) stmt;
+        if (assign.getValue() != null && assign.getValue().getInvocation() != null) {
+          retVal.add(assign.getValue().getInvocation());
+        }
+      }
+    }
+    return retVal;
+  }
+
   @Override
   public int hashCode() {
     int hash = 7;

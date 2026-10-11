@@ -1,5 +1,7 @@
 package com.doublegsoft.jcommons.metamodel;
 
+import com.doublegsoft.jcommons.metabean.type.ObjectType;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,6 +12,8 @@ public class InvocationDefinition {
   private String error;
 
   private final List<VariableDefinition> arguments = new ArrayList<>();
+
+  private ObjectType returnType;
 
   public String getMethod() {
     return method;
@@ -29,5 +33,13 @@ public class InvocationDefinition {
 
   public void setError(String error) {
     this.error = error;
+  }
+
+  public ObjectType getReturnType() {
+    return returnType;
+  }
+
+  public void setReturnType(ObjectType returnType) {
+    this.returnType = returnType;
   }
 }
