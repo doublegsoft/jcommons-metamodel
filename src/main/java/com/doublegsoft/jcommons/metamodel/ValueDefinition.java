@@ -30,7 +30,7 @@ public class ValueDefinition {
 
   private String keyword;
 
-  private BigDecimal number;
+  private Number number;
 
   private String string;
 
@@ -66,11 +66,11 @@ public class ValueDefinition {
     this.keyword = keyword;
   }
 
-  public BigDecimal getNumber() {
+  public Number getNumber() {
     return number;
   }
 
-  public void setNumber(BigDecimal number) {
+  public void setNumber(Number number) {
     this.number = number;
   }
 
