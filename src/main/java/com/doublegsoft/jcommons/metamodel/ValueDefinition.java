@@ -74,6 +74,13 @@ public class ValueDefinition {
     this.number = number;
   }
 
+  public boolean isBigDecimal() {
+    if (number == null) {
+      throw new IllegalStateException("the number is null in value");
+    }
+    return number instanceof BigDecimal;
+  }
+
   public String getString() {
     return string;
   }
